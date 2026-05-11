@@ -1,0 +1,41 @@
+name: tests
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  fixtures:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: jq --version
+
+      - name: Test 1 — dangling permission-loop → BLOCK
+        run: |
+          printf '%s' '{"hook_event_name":"Stop","last_assistant_message":"Here is the function. Let me know if you would like me to continue with tests."}' > /tmp/t1.json
+          out="$(bash no-cliffhanger.sh < /tmp/t1.json 2>&1; echo "EXIT=$?")"
+          echo "$out"
+          echo "$out" | grep -q "BLOCKED: dangling permission-loop" || exit 1
+          echo "$out" | grep -q "EXIT=2" || exit 1
+
+      - name: Test 2 — substantive next-action → ALLOW
+        run: |
+          printf '%s' '{"hook_event_name":"Stop","last_assistant_message":"Here is the function. Tests are next; running pytest now."}' > /tmp/t2.json
+          out="$(bash no-cliffhanger.sh < /tmp/t2.json 2>&1; echo "EXIT=$?")"
+          echo "$out" | grep -q "EXIT=0" || exit 1
+
+      - name: Test 3 — partial-status closeout → ALLOW
+        run: |
+          printf '%s' '{"hook_event_name":"Stop","last_assistant_message":"Status: partial. Verification: not run because deps missing. Next step: pip install -r requirements.txt."}' > /tmp/t3.json
+          out="$(bash no-cliffhanger.sh < /tmp/t3.json 2>&1; echo "EXIT=$?")"
+          echo "$out" | grep -q "EXIT=0" || exit 1
+
+      - name: Test 4 — "Want me to continue?" → BLOCK
+        run: |
+          printf '%s' '{"hook_event_name":"Stop","last_assistant_message":"Want me to continue with the second migration?"}' > /tmp/t4.json
+          out="$(bash no-cliffhanger.sh < /tmp/t4.json 2>&1; echo "EXIT=$?")"
+          echo "$out" | grep -q "BLOCKED: dangling permission-loop" || exit 1
+          echo "$out" | grep -q "EXIT=2" || exit 1
+
+      - name: Test 5 — explicit multiple-choice → ALLOW
+        run: |
+          printf '%s' '{"hook_event_name":"Stop","last_assistant_message":"Here are three options. Pick one of: A) bash, B) python, C) go."}' > /tmp/t5.json
+          out="$(bash no-cliffhanger.sh < /tmp/t5.json 2>&1; echo "EXIT=$?")"
+          echo "$out" | grep -q "EXIT=0" || exit 1
