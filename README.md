@@ -43,6 +43,7 @@ See [RECEIPTS.md](RECEIPTS.md) for five reproducible local fixture tests.
 Part of the [LLM Dark Patterns Hooks](https://github.com/waitdeadai/llm-dark-patterns) suite.
 
 - [no-vibes](https://github.com/waitdeadai/no-vibes), [time-anchor](https://github.com/waitdeadai/time-anchor), [no-curfew](https://github.com/waitdeadai/no-curfew), [no-sycophancy](https://github.com/waitdeadai/no-sycophancy)
+- [honest-eta](https://github.com/waitdeadai/honest-eta) — vibe time estimates and linear-scaling parallelism claims.
 - [minmaxing](https://github.com/waitdeadai/minmaxing) — parent harness
 
 ## License
