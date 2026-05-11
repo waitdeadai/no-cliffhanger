@@ -44,6 +44,9 @@ Part of the [LLM Dark Patterns Hooks](https://github.com/waitdeadai/llm-dark-pat
 
 - [no-vibes](https://github.com/waitdeadai/no-vibes), [time-anchor](https://github.com/waitdeadai/time-anchor), [no-curfew](https://github.com/waitdeadai/no-curfew), [no-sycophancy](https://github.com/waitdeadai/no-sycophancy)
 - [honest-eta](https://github.com/waitdeadai/honest-eta) — vibe time estimates and linear-scaling parallelism claims.
+- [no-fake-recall](https://github.com/waitdeadai/no-fake-recall) — false-memory recall claims without quoted prior content.
+- [no-fake-stats](https://github.com/waitdeadai/no-fake-stats) — fabricated percentages and amounts without source.
+- [no-fake-cite](https://github.com/waitdeadai/no-fake-cite) — academic citation patterns without verifiable URL.
 - [minmaxing](https://github.com/waitdeadai/minmaxing) — parent harness
 
 ## License
