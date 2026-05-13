@@ -38,6 +38,23 @@ Merge `settings.example.json` entries into `.claude/settings.json`. Requires `jq
 
 See [RECEIPTS.md](RECEIPTS.md) for five reproducible local fixture tests.
 
+## Physics-backed engine
+
+This standalone hook remains the simplest install path. For users who want the
+benchmark-backed, rule-pack-hashed engine version, the same closeout mechanic is
+also available in [AgentCloseoutBench](https://github.com/waitdeadai/agent-closeout-bench):
+
+```bash
+git clone https://github.com/waitdeadai/agent-closeout-bench
+cd agent-closeout-bench
+bash adapters/claude-code/install.sh /path/to/your/project no-cliffhanger
+bash scripts/hook-smoke.sh
+```
+
+The physics-backed adapter maps `no-cliffhanger` to the `cliffhanger` category
+engine and can be used for daily enforcement, fixtures, benchmark evaluation,
+and opt-in content-free collaboration telemetry.
+
 ## Sister tools
 
 Part of the [LLM Dark Patterns Hooks](https://github.com/waitdeadai/llm-dark-patterns) suite.
