@@ -1,0 +1,21 @@
+{
+  "name": "no-cliffhanger",
+  "description": "Stop hook that blocks dangling permission-loop endings. Inspects the last 320 characters of Claude's outgoing message and refuses 'want me to continue' / 'let me know if you want me to proceed' tails unless the message already closes with a partial/blocked/verified status or a real explicit choice.",
+  "version": "0.1.0",
+  "author": {
+    "name": "waitdeadai",
+    "url": "https://github.com/waitdeadai"
+  },
+  "homepage": "https://github.com/waitdeadai/no-cliffhanger",
+  "repository": "https://github.com/waitdeadai/no-cliffhanger",
+  "license": "Apache-2.0",
+  "keywords": [
+    "claude-code",
+    "hooks",
+    "permission-loop",
+    "dark-patterns",
+    "governance",
+    "ai-safety",
+    "stop-hook"
+  ]
+}
