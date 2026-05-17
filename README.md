@@ -25,6 +25,19 @@ Existing anti-hesitation tooling (Marco Lancini's [stop-phrase-guard.sh](https:/
 
 ## Install
 
+### Recommended: via the self-hosted plugin marketplace
+
+```bash
+claude plugin marketplace add waitdeadai/claude-plugins
+claude plugin install llm-dark-patterns@waitdeadai-plugins
+```
+
+This installs the whole `llm-dark-patterns` suite (28 hooks including `no-cliffhanger`).
+
+> The Anthropic community marketplace currently does not list this plugin despite a Published submission — pipeline stalled since 2026-05-13. Tracking: [#1887](https://github.com/anthropics/claude-plugins-official/issues/1887). The self-hosted route bypasses that pipeline.
+
+### Standalone (single hook, manual wire)
+
 ```bash
 mkdir -p .claude/hooks
 curl -fsSL https://raw.githubusercontent.com/waitdeadai/no-cliffhanger/main/no-cliffhanger.sh \
